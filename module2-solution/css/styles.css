@@ -1,6 +1,7 @@
 
 * {
   box-sizing: border-box;
+  align: center;
 }
 
 body {
@@ -9,33 +10,90 @@ body {
 }
 
 h1 {
-  font-size: 75%;
   margin-bottom: 30px;
 }
 
-#chicken {
-  font-size: 25%;
-  padding: 10px 20px 10px 20px;
-  border: 5px solid black;
-  width: 300px;
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-1, .col-md-2, .col-md-3 {
+     border: 5px solid black;
+     float: left;
+     background-color: gray;
+     margin-left: 5px;
+     margin-top: 5px;
+  }
+  .col-md-1 {
+    width: 50%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-md-2 {
+    width: 50%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-md-3 {
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+  }
 }
 
-#cwords {
-  padding: 10px 20px 10px 20px;
-  border: 5px solid black;
-  width: 300px;
+@media (min-width: 992px) {
+  .col-lg-1, .col-lg-2, .col-lg-3 {
+     border: 5px solid black;
+     float: left;
+     background-color: gray;
+     margin-left: 5px;
+  }
+  .col-lg-1 {
+    width: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-lg-2 {
+    width: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-lg-3 {
+    width: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-1, .col-sm-2, .col-sm-3 {
+     border: 5px solid black;
+     float: left;
+     background-color: gray;
+     margin-top: 5px;
+     margin-left: 20px;
+     margin-right: 20px;
+  }
+  .col-sm-1 {
+    height: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-sm-2 {
+    height: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+  .col-sm-3 {
+    height: 33%;
+    padding: 10px 20px 10px 20px;
+  }
+}
+
+#chicken {
+  border: 2px solid black;
+  width: 150px;
+  align-items: right;
+  background-color: green;
 }
 
 #beef {
-  font-size: 25%;
-  padding: 10px 20px 10px 20px;
-  border: 5px solid black;
-  width: 300px;
+  border: 2px solid black;
+  width: 150px;
+  background-color: pink;
 }
 
 #sushi {
-  font-size: 25%;
-  padding: 10px 20px 10px 20px;
-  border: 5px solid black;
-  width: 300px;
+  border: 2px solid black;
+  width: 150px;
+  background-color: blue;
 }
