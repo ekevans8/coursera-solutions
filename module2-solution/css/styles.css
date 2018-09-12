@@ -1,4 +1,29 @@
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   text-align: center; 
   font-family: Arial, Helvetica, san-serif;
+}
+
+h1 {
+  font-size: 75%;
+  margin-bottom: 30px;
+}
+
+#chicken {
+  font-size: 25%;
+  padding: 10px 20px 10 px 20 px;
+  border: 5px solida black;
+  width: 300px;
+}
+
+#beef {
+  font-size: 25%;
+}
+
+#sushi {
+  font-size: 25%;
 }
