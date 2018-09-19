@@ -1,1 +1,44 @@
 
+* {
+  box-sizing: border-box;
+  align: center;
+}
+
+body {
+  text-align: center; 
+  font-family: Arial, Helvetica, san-serif;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+
+#box {
+	border: 5px solid black;
+     float: left;
+     background-color: gray;
+     margin-left: 5px;
+     margin-top: 5px;
+}
+
+#header-nav {
+	background-color: gray;
+	text-align: left;
+}
+
+#navbar-brand {
+	color: black;
+	text-align: left;
+}
+
+.button {
+	background-color: gray;
+	float: right;
+}
+
+
+#chicken, #beef, #sushi {
+  font-weight: bold;
+  align-items: center;
+}
