@@ -15,7 +15,7 @@
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
-             <input id="lunch-menu" type="text" ng-model="lunchList" ng-keyup="clearOutput();"
+             <input id="lunch-menu" type="text" ng-model="lunchList" ng-keyup="clearOutput();" ng-style="{'border-color': color}"
              placeholder="list comma separated dishes you usually have for lunch (empty item not part of count)"
              class="form-control">
          </div>
@@ -27,7 +27,9 @@
            <!-- up to three items = Enjoy! (green text, border) -->
            <!-- greater than 3 = Too much! (green text, border) -->
            <!-- empty = Please enter data first (red text, border) -->
-           <span ng-class="{'color-red': outputMessage === 'Enjoy!'}">{{outputMessage}}</span>
+           <span ng-style="{color: color}">
+              {{outputMessage}}
+           </span>
          </div>
    </div>
 
