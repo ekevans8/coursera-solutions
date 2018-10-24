@@ -1,38 +1,55 @@
 (function () {
 	'use strict';
 
-	angular.module('LunchCheck', [])
+	var app = angular.module('ShoppingListCheckOff', [])
+	.controller('ToBuyController', ToBuyController)
+	.controller('AlreadyBoughtController', AlreadyBoughtController);
 
-	.controller('LunchCheckController', function ($scope) {
-		$scope.lunchList = "";
-		$scope.outputMessage = "";
-		$scope.color = "black";
+	app.service('ShoppingListCheckOffService', function() {
+		var toBuyList = [{name: "cookies", quantity: 24}, 
+				{name: "bananas", quantity: 8}, 
+				{name: "mangoes", quantity: 3}, 
+				{name: "bags of spinach", quantity: 2}, 
+				{name: "almond milk", quantity: 1}];
+		var alreadyBoughtList = [];
+		var buyFull = {};
+		var boughtFull = {};
 
-		$scope.checkTooMuch = function () {
-			$scope.outputMessage = calculateOutput($scope.lunchList);
-		};
+		return {
+			getToBuyList: function (){
+				return toBuyList;
+			},
 
-		$scope.clearOutput = function () {
-			$scope.outputMessage = "";
-			$scope.color = "black";
-		};
+			getBoughtList: function (){
+				return alreadyBoughtList;
+			},
 
-		function calculateOutput(string) {
-			if (string === "") {
-				$scope.color = "red";
-				return "Please enter data first!";
-			} 
-			var words = string.split(',');
-			var length = words.length;
-			if (words.includes(" ")) {
-				length = length - 1;
-			}
-			$scope.color = "green";
-			if (length <= 3) {
-				return "Enjoy!";
-			} else {
-				return "Too much!";
+			buyAnItem: function(item) {
+				var newItem = {
+      				name: item.name,
+      				quantity: item.quantity
+    			};
+			    alreadyBoughtList.push(newItem);
+			    var index = toBuyList.indexOf(item);
+			    toBuyList.splice(index, 1);
 			}
 		}
 	});
+
+	ToBuyController.$inject = ['ShoppingListCheckOffService'];
+	function ToBuyController(ShoppingListCheckOffService) {
+		var buy = this;
+		buy.buyList = ShoppingListCheckOffService.getToBuyList();
+		buy.buyItem = function(item) {
+			ShoppingListCheckOffService.buyAnItem(item);
+		}
+	}
+
+	AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+	function AlreadyBoughtController(ShoppingListCheckOffService) {
+		var bought = this;
+		bought.boughtList = ShoppingListCheckOffService.getBoughtList();
+	}
+
+	
 })();
