@@ -19,16 +19,19 @@
     			var foundItems = [];
 
     			for(var i = 0; i < result.data.menu_items.length; i++) {
-    				if(result.data.menu_items[i].description.match(searchTerm)){
-    					var item = {};
-    					item.name = result.data.menu_items[i].name;
-    					item.short_name = result.data.menu_items[i].short_name;
-    					item.description = result.data.menu_items[i].description;
-    					console.log(item);
+    				console.log("1: "+ result.data.menu_items[i].description);
+    				console.log("2: "+searchTerm.toLowerCase());
+    				if(result.data.menu_items[i].description.includes(searchTerm.toLowerCase())){
+    					var item = {
+    						name: result.data.menu_items[i].name,
+    						short_name: result.data.menu_items[i].short_name,
+    						description: result.data.menu_items[i].description
+    					};
+    					//console.log(item);
     					foundItems.push(item);
     				}
     			}
-
+    			//console.log(foundItems);
     			// return processed items
     			return foundItems;			
 			});
@@ -40,7 +43,7 @@
 		var ddo = {
 			templateUrl: 'foundItems.html',
     		scope: {
-      			menu_items: '<',
+      			found: '<',
       			onRemove: '&'
     		},
     		controller: NarrowItDownController,
@@ -54,12 +57,20 @@
 	function NarrowItDownController(MenuSearchService) {
 		var narrow = this;
 		narrow.searchTerm = "";
+		narrow.found = [];
 		narrow.getItems = function() {
-			narrow.found = MenuSearchService.getMatchedMenuItems(narrow.searchTerm);
-			console.log(narrow.found.menu_items.length);
+			var listPromise = MenuSearchService.getMatchedMenuItems(narrow.searchTerm);
+			listPromise.then(function(value){
+				narrow.found = value;
+				console.log(narrow.found);
+			});
 		}
 		narrow.removeItem = function(itemIndex) {
 			narrow.found.splice(itemIndex, 1);
+		}
+
+		narrow.clearOutput = function () {
+			narrow.found = [];
 		}
 	}
 
