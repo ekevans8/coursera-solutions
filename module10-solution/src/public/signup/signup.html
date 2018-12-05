@@ -1,3 +1,56 @@
-<form name='myForm'>
-	
-</form>
+<div class="container">
+	<h2 id="menu-categories-title" class="text-center">Newsletter Sign Up Form</h2>
+  	<div class="text-center">
+    	<br>
+    	<div>
+			<form name="myForm" novalidate="">
+				<table align="center">
+					<tr>
+						<td align="left">First Name:</td>
+						<td>
+							<input class="input_form_text" name="firstName" ng-model="signupCrtl.firstName" type="text" required ng-minlength="2">
+					        <div class="error" ng-show="myForm.firstName.$error.required && myForm.firstName.$touched">First name required.</div>
+					        <div class="error" ng-show="myForm.firstName.$error.minlength && myForm.firstName.$touched">First name must be longer than 2 characters.</div> 
+					    </td>
+					</tr>
+			        <tr>
+			        	<td align="left">Last Name:</td>
+			        	<td>
+			        		<input class="input_form_text" name="lastName" ng-model="signupCrtl.lastName" type="text" required ng-minlength="2">
+					        <div class="error" ng-show="myForm.lastName.$error.required && myForm.lastName.$touched">Last name required.</div>
+					        <div class="error" ng-show="myForm.lastName.$error.minlength && myForm.lastName.$touched">Last name must be longer than 2 characters.</div>
+			        	</td>
+			    	</tr>
+			    	<tr>
+			        	<td align="left">Email:</td>
+			        	<td>
+			        		<input class="input_form_text" name="email" ng-model="signupCrtl.email" type="email" required>
+					        <div class="error" ng-show="myForm.email.$error.required && myForm.email.$touched">Email required.</div>
+			        		<div class="error" ng-show="myForm.email.$error.email && myForm.email.$touched">Enter valid email address.</div>
+	        			</td>
+	        		</tr>
+	        		<tr>
+			        	<td align="left">Phone:</td>
+			        	<td>
+			        		<input class="input_form_text" name="phone" ng-model="signupCrtl.phone" type="twl" required>
+					        <div class="error" ng-show="myForm.phone.$error.required && myForm.phone.$touched">Phone number required.</div>
+	        			</td>
+	        		</tr>
+	        		<tr>
+			        	<td align="left">Favorite Dish:</td>
+			        	<td>
+			        		<input class="input_form_text" name="favDish" ng-model="signupCtrl.favDish" type="text" required ng-minlength="2" ng-maxlength="2">
+					        <div class="error" ng-show="myForm.favDish.$error.required && myForm.favInput.$touched">Favorite dish required.</div>
+					        <div class="error" ng-show="myForm.favDish.$error.minlength && myForm.favDish.$touched">Favorite dish has min-length of 2.</div>
+					        <div class="error" ng-show="myForm.favDish.$error.maxlength && myForm.favDish.$touched">Favorite dish has max-length of 2.</div>
+	        			</td>
+	        		</tr>
+        		<br>
+
+        		</table>
+		        <br><br>
+		        <button class="input_form_text" type="button" ng-click="signupCtrl.addPerson()" ng-disabled="myForm.firstName.$invalid || myForm.lastName.$invalid || myForm.email.$invalid || myForm.phone.$invalid || myForm.favDish.$invalid">SUBMIT</button>
+			</form>
+		</div>
+ 	</div>
+</div>

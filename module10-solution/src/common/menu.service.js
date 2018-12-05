@@ -27,6 +27,10 @@ function MenuService($http, ApiPath) {
     });
   };
 
+  service.getFavDish = function (category) {
+    return "NONE"
+  };
+
 }
 
 

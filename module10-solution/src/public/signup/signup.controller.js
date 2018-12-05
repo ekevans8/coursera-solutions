@@ -4,14 +4,18 @@
 angular.module('public')
 .controller('SignupController', SignupController);
 
-SignupController.$inject = [''];
-function SignupController(firstName, lastName, email, phone, favDish) {
-  var $ctrl = this;
-  $ctrl.firstName = firstName;
-  $ctrl.lastName = lastName;
-  $ctrl.email = email;
-  $ctrl.phone = phone;
-  $ctrl.favDish = favDish;
+
+function SignupController() {
+  this.firstName = "";
+  this.lastName = "";
+  this.email = "";
+  this.phone = "";
+  this.favDish = "";
+
+  this.addPerson = function() {
+  	console.log(this.firstName+" "+this.lastName+" "+this.email+" "+this.phone+" "+this.favDish);
+  	//send to menu service for processing
+  }
 }
 
 })();
