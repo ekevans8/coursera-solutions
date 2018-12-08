@@ -1,6 +1,58 @@
 <div class="container">
   <h2 id="menu-categories-title" class="text-center">My Info</h2>
-  <div class="text-center">
-    
+  <div class="text-center" ng-hide="infoCtrl.foundInfo();">
+    <h3>Not Signed Up Yet. <a ui-sref="public.signup">Sign Up Now!</a></h3>
   </div>
+
+  <div class="text-center" ng-show="infoCtrl.foundInfo();">
+    <table align="center">
+		<tr>
+			<td align="left">First Name:</td>
+			<td align="right">
+				<div class="myText">{{infoCtrl.firstName}}</div> 
+			</td>
+		</tr>
+		<tr>
+			<td align="left">Last Name:</td>
+			<td align="right">
+			    <div class="myText">{{infoCtrl.lastName}}</div>     		
+			</td>
+		</tr>
+		<tr>
+			<td align="left">Email:</td>
+			<td align="right">
+			    <div class="myText">{{infoCtrl.email}}</div>    		
+	        </td>
+	    </tr>
+	    <tr>
+			<td align="left">Phone:</td>
+			<td align="right">
+			    <div class="myText">{{infoCtrl.phone}}</div>    		
+	        </td>
+	    </tr>
+	    <tr>
+			<td align="left">Favorite Dish:</td>
+			<td align="right">
+			     <div class="myText">{{infoCtrl.favDish}}</div> 
+			</td>
+	    </tr>
+	    <tr>
+			<td align="left">Title:</td>
+			<td align="right">
+			    <div class="myText">{{infoCtrl.favDishTitle}}</div>    		
+	        </td>
+	    </tr>
+	    <tr>
+			<td align="left">Description:</td>
+			<td align="right">
+			     <div class="myText">{{infoCtrl.favDishDesc}}</div> 
+			</td>
+	    </tr>
+    </table>
+    <div align="center">
+    	<img class="img-responsive" width="250" height="150" ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.favDishImg}}.jpg" alt="{{infoCtrl.favDishTitle}}">
+    </div>
+
+  </div>  
+
 </div>

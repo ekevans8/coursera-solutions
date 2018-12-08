@@ -4,17 +4,25 @@
 angular.module('public')
 .controller('SignupController', SignupController);
 
-
-function SignupController() {
+SignupController.$inject = ['MenuService'];
+function SignupController(MenuService) {
   this.firstName = "";
   this.lastName = "";
   this.email = "";
   this.phone = "";
   this.favDish = "";
+  this.saved = false;
 
   this.addPerson = function() {
+  	this.saved = true;
+  	console.log("Add person to newsletter");
   	console.log(this.firstName+" "+this.lastName+" "+this.email+" "+this.phone+" "+this.favDish);
   	//send to menu service for processing
+  	MenuService.setInfo(this.firstName,this.lastName,this.email,this.phone,this.favDish);
+  }
+
+  this.unsave = function() {
+  	this.saved = false;
   }
 }
 

@@ -4,11 +4,26 @@
 angular.module('public')
 .controller('MyInfoController', MyInfoController);
 
-MyInfoController.$inject = ['favDish']
+MyInfoController.$inject = ['MenuService', 'ApiPath']
 
-function MyInfoController(favDish) {
-  this.favDish = favDish;
+function MyInfoController(MenuService, ApiPath) {
+  this.firstName = MenuService.getFirstName();
+  this.lastName = MenuService.getLastName();
+  this.email = MenuService.getEmail();
+  this.phone = MenuService.getPhone();
+  this.favDish = MenuService.getFavDish();
+  this.favDishTitle = MenuService.getFavDishTitle();
+  this.favDishDesc = MenuService.getFavDishDesc();
+  this.favDishImg = MenuService.getFavDishImg();
+  this.basePath = ApiPath;
   console.log("FavDish: " + this.favDish);
+
+  this.foundInfo = function () {
+  	if(this.favDish == "NONE" || this.favDish == ""){
+  		return false;
+  	}
+  	return true;
+  }
 }
 
 })();
