@@ -8,14 +8,14 @@ angular.module('common')
 MenuService.$inject = ['$http', 'ApiPath'];
 function MenuService($http, ApiPath) {
   var service = this;
-  this.firstName = "";
-  this.lastName = "";
-  this.email = "";
-  this.phone = "";
-  this.favDish = "";
-  this.favDishTitle = "";
-  this.favDishDesc = "";
-  this.favDishImg = "";
+  service.firstName = "";
+  service.lastName = "";
+  service.email = "";
+  service.phone = "";
+  service.favDish = "";
+  service.favDishTitle = "";
+  service.favDishDesc = "";
+  service.favDishImg = "";
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -35,46 +35,77 @@ function MenuService($http, ApiPath) {
     });
   };
 
-  service.getFavDish = function () {
+  service.checkForFavDish = function() {
+    var newUrl = "https://warm-everglades-81568.herokuapp.com/menu_items/"+service.favDish+".json";
+    return $http({
+      method: "GET",
+      url: newUrl
+      }).then(function(result) {
+        // process result
+        var info = [];
+        info.push(result.data.name);
+        info.push(result.data.description);
+        return info;      
+      });
+  }
 
-    
-    return this.favDish;
+  service.getDataFromPromise = function() {
+    var promiseList = service.checkForFavDish();
+    promiseList.then(function(value){
+      var words = [];
+      words = value;
+      console.log(words);
+      console.log(words[0]+" "+words[1]);
+      service.favDishTitle = words[0]+"";
+      service.getFavDishDesc = words[1]+"";
+
+      service.getFavDishImg = service.getFavDish;
+    });
+    return service.favDishTitle == "";
+  }
+
+  service.getFavDish = function () {
+    return service.favDish;
   };
 
+  service.setFavDish = function(favDish) {
+    service.favDish = favDish
+  }
+
   service.setInfo = function (firstName,lastName,email,phone,favDish) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.phone = phone;
-    this.favDish = favDish;
+    service.firstName = firstName;
+    service.lastName = lastName;
+    service.email = email;
+    service.phone = phone;
+    service.favDish = favDish;
   }
 
   service.getFirstName = function () {
-    return this.firstName;
+    return service.firstName;
   }
 
   service.getLastName = function () {
-    return this.lastName;
+    return service.lastName;
   }
 
   service.getEmail = function () {
-    return this.email;
+    return service.email;
   }
 
   service.getPhone = function () {
-    return this.phone;
+    return service.phone;
   }
 
   service.getFavDishTitle = function () {
-    return this.favDishTitle;
+    return service.favDishTitle;
   }
 
   service.getFavDishDesc = function () {
-    return this.favDishDesc;
+    return service.favDishDesc;
   }
 
   service.getFavDishImg = function () {
-    return this.favDishImg;
+    return service.favDishImg;
   }
 
 }

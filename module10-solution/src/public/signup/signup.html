@@ -39,12 +39,12 @@
 	        		<tr>
 			        	<td align="left">Favorite Dish:</td>
 			        	<td>
-			        		<input class="myText" name="favDish" ng-model="signupCtrl.favDish" type="text" required ng-minlength="2" ng-maxlength="2" ng-keyup="signupCtrl.unsave();">
+			        		<input class="myText" name="favDish" ng-model="signupCtrl.favDish" type="text" required ng-minlength="2" ng-maxlength="2" ng-keyup="signupCtrl.unsave(); signupCtrl.checkInput(myForm.favDish.$viewValue);">
 					        <div class="errorText" ng-show="myForm.favDish.$error.required && myForm.favInput.$touched">Favorite dish required.</div>
 					        <div class="errorText" ng-show="myForm.favDish.$error.minlength && myForm.favDish.$touched">Favorite dish has min-length of 2.</div>
 					        <div class="errorText" ng-show="myForm.favDish.$error.maxlength && myForm.favDish.$touched">Favorite dish has max-length of 2.</div>
 					        <!-- check if fav dish in menu items -->
-					        
+					        <div class="errorText" ng-show="signupCtrl.errorFound">No such menu number exists. </div>
 	        			</td>
 	        		</tr>
         		<br>

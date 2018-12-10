@@ -11,6 +11,7 @@ function SignupController(MenuService) {
   this.email = "";
   this.phone = "";
   this.favDish = "";
+  this.errorFound = false;
   this.saved = false;
 
   this.addPerson = function() {
@@ -23,6 +24,13 @@ function SignupController(MenuService) {
 
   this.unsave = function() {
   	this.saved = false;
+  }
+
+  this.checkInput = function(favDish) {
+  	this.favDish = favDish;
+  	console.log(this.favDish);
+  	MenuService.setFavDish(this.favDish);
+  	this.errorFound = MenuService.getDataFromPromise();
   }
 }
 
