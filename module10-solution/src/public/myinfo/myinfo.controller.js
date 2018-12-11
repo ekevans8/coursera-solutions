@@ -12,11 +12,12 @@ function MyInfoController(MenuService, ApiPath) {
   this.email = MenuService.getEmail();
   this.phone = MenuService.getPhone();
   this.favDish = MenuService.getFavDish();
+  //console.log("FavDish: " + this.favDish);
   this.favDishTitle = MenuService.getFavDishTitle();
-  this.favDishDesc = MenuService.getFavDishDesc();
+  this.favDishDesc = MenuService.getFavDishDesc;
   this.favDishImg = MenuService.getFavDishImg();
   this.basePath = ApiPath;
-  console.log("FavDish: " + this.favDish);
+  
 
   this.foundInfo = function () {
   	if(this.favDish == "NONE" || this.favDish == ""){

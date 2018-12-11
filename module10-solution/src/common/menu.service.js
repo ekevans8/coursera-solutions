@@ -21,7 +21,7 @@ function MenuService($http, ApiPath) {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
       return response.data;
     });
-  };
+  }
 
 
   service.getMenuItems = function (category) {
@@ -33,7 +33,7 @@ function MenuService($http, ApiPath) {
     return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
       return response.data;
     });
-  };
+  }
 
   service.checkForFavDish = function() {
     var newUrl = "https://warm-everglades-81568.herokuapp.com/menu_items/"+service.favDish+".json";
@@ -51,25 +51,27 @@ function MenuService($http, ApiPath) {
 
   service.getDataFromPromise = function() {
     var promiseList = service.checkForFavDish();
+    var words = [];
     promiseList.then(function(value){
-      var words = [];
       words = value;
-      console.log(words);
-      console.log(words[0]+" "+words[1]);
-      service.favDishTitle = words[0]+"";
-      service.getFavDishDesc = words[1]+"";
-
+      //console.log(words);
+      //console.log("1: "+words[0]+" "+words[1]);
+      service.favDishTitle = words[0];
+      service.getFavDishDesc = words[1];
+      //console.log("2: "+service.favDishTitle+" "+service.getFavDishDesc);
       service.getFavDishImg = service.getFavDish;
+      console.log("title: "+service.getFavDishTitle());
+      console.log(service.favDishTitle == "");
+      return service.favDishTitle == "";
     });
-    return service.favDishTitle == "";
   }
 
   service.getFavDish = function () {
     return service.favDish;
-  };
+  }
 
   service.setFavDish = function(favDish) {
-    service.favDish = favDish
+    service.favDish = favDish.toUpperCase();
   }
 
   service.setInfo = function (firstName,lastName,email,phone,favDish) {
@@ -77,7 +79,11 @@ function MenuService($http, ApiPath) {
     service.lastName = lastName;
     service.email = email;
     service.phone = phone;
-    service.favDish = favDish;
+    service.favDish = favDish.toUpperCase();
+  }
+
+  service.getFavDishDesc = function () {
+    return service.favDishDesc;
   }
 
   service.getFirstName = function () {
@@ -98,10 +104,6 @@ function MenuService($http, ApiPath) {
 
   service.getFavDishTitle = function () {
     return service.favDishTitle;
-  }
-
-  service.getFavDishDesc = function () {
-    return service.favDishDesc;
   }
 
   service.getFavDishImg = function () {
